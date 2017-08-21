@@ -4,7 +4,7 @@ nuke.pluginAddPath( '/Volumes/GBPROD01/Departments/.Nuke/plugins' )
 nuke.pluginAddPath('./X_Tools')
 nuke.pluginAddPath('./X_Tools/Icons')
 nuke.pluginAddPath('./X_Tools/Gizmos')
-nuke.pluginAddPath('/Users/msquires/Documents/gizmos2')
+#nuke.pluginAddPath('/Users/msquires/Documents/gizmos2')
 
 import collectFiles
 import ReadFromWrite
@@ -17,7 +17,13 @@ nuke.ViewerProcess.register("SAT10", nuke.Node, ('SAT10_viewerprocess.gizmo','')
 
 #DEFAULT SETTINGS
 nuke.addOnUserCreate(lambda:nuke.thisNode()['first_frame'].setValue(nuke.frame()), nodeClass='FrameHold')
-nuke.knobDefault("RotoPaint.toolbox", "brush {{brush ltt 0} {clone ltt 0}}")
+nuke.knobDefault("RotoPaint.toolbox", '''clone {
+{ blur ltt 0 }
+{ clone ltt 0}
+{reveal ltt 0}
+}''')
+nuke.knobDefault("Roto.outputMask", "rgba.alpha")
+nuke.knobDefault("Roto.format", "Tangerine")
 
 
 #Project Settings
