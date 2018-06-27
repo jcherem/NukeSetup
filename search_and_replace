@@ -1,0 +1,32 @@
+import os
+import shutil
+import re
+
+
+n = nuke.toNode('NoOp2')
+m = nuke.toNode('DELVIERY_RENDER')
+
+currentVer = verNum
+searchVerNum = str(currentVer)
+searchTerm = 'v' + searchVerNum.zfill(3)
+
+
+verNum = n['verNum'].getValue()
+
+
+dest = str(verNum)
+paddedDest = 'v' + dest.zfill(3)
+
+
+path = m['file'].getValue()
+newPath = re.sub('v' + str(currentVer), paddedDest, path)
+#newPath2 = re.sub(str(currentVer), paddedDest, newPath)
+
+print path
+print newPath
+    
+
+	
+#Create New Folder Tree	
+#shutil.copytree( '//jupiter/Studio/23583_BrandFuel_DavosWindow_NIA/COMP/01_renders/delivery_version_template', 
+#'//jupiter/Studio/23583_BrandFuel_DavosWindow_NIA/COMP/01_renders/' + paddedDest  
