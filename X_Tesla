@@ -1,0 +1,28 @@
+set cut_paste_input [stack 0]
+version 11.0 v2
+X_Tesla {
+ inputs 0
+ name X_Tesla
+ selected true
+ xpos 2938
+ ypos 3944
+ core 1
+ amplitude_clamp {{clamp(amplitude,0.01,1000) i}}
+ s_amplitude {{clamp(secondary_amp,-1,1)}}
+ s_frequency {{clamp(secondary_freq,0,1000)}}
+ angle {{atan((-point0.y+point1.y)/(-point0.x+point1.x))/pi*2 i}}
+ hypo {{hypot(point0.x-point1.x,point0.y-point1.y) i}}
+ size_clamp {{clamp(size+2*soften*clamp(size,0,1),0,100000)}}
+ end_size_clamp {{clamp(end_size,0,10000) i}}
+ Branches 0
+ branches_clamp {{clamp(branches,0,1000) i}}
+ length_clamp {{clamp(length,0.001,1) i}}
+ randomize_clamp {{clamp(randomize,0,100) i}}
+ br_size_clamp {{clamp(br_size,0,100000) i}}
+ br_end_size_clamp {{clamp(br_end_size,0,1000) i}}
+ Animation 0
+ retract_clamp {{clamp(retract,0,0.999) i}}
+ jitter_clamp {{clamp(jitter,0,1000) i}}
+ Rendering 0
+ soften {{clamp(soften_filter*(1-override),0,1000)}}
+}
